@@ -1,29 +1,45 @@
-# README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+# Requirements #
 
-### What is this repository for? ###
+* `Node.js v10` or higher
+* `Ruby Gem v2` or higher (For IOS)
+* `Xcode` (For IOS)
+* `Android Studio` (For Android)
+* `Java v8` or higher (For Android)
+* `Gradle` (For Android)
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+# Installation Instructions for Browser #
 
-### How do I get set up? ###
+* Run `git clone https://github.com/MemphisEats/frontend.git`
+* In frontend folder, run `npm install` to install dependencies
+* Run `npx ng serve` to start the app
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+# Installation Instructions for IOS Simulator #
 
-### Contribution guidelines ###
+* Run `git clone https://github.com/MemphisEats/frontend.git`
+* In frontend folder, run `npm install` to install dependencies
+* Run `npm i -g ionic` to install ionic globally
+* Install Xcode, Then run `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer` to setup Xcode
+* Run `ionic build`, then`ionic cap sync ios` to compiles web assets and install plugins
+* Run `ionic capacitor open ios` to open Xcode
 
-* Writing tests
-* Code review
-* Other guidelines
+# Installation Instructions for Android Simulator #
 
-### Who do I talk to? ###
+* Run `git clone https://github.com/MemphisEats/frontend.git`
+* In frontend folder, run `npm install` to install dependencies
+* Run `npm i -g ionic` to install ionic globally
+* Run `sudo gem install cocoapods` to install ruby gems
+* Setup Android Studio (<https://ionicframework.com/docs/developing/android#android-studio>)
+* Run `ionic build`, then`ionic cap sync android` to compiles web assets and install plugins
+* Run `ionic capacitor open android` to open Android Studio
 
-* Repo owner or admin
-* Other community or team contact
+# Stripe API #
+
+* Run `npm i -g firebase-tools` to install Firebase CLI
+* Run `firebase login` to login firebase account
+* In frontend folder, run `cd functions` to change directory
+* Run `npm install` to install dependencies
+* Run `firebase functions:config:get > .runtimeconfig.json` to generate API Key in json file
+* In functions folder, run `npm run build` to compile typescript code
+* Open another terminal, run `firebase serve --port=5001` to run Stripe API Function locally
+* Use Card Number 4242424242424242, Any Future Date, Any CSV Number to test
