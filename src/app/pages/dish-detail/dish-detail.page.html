@@ -1,0 +1,118 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Dish Details</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" *ngIf="detail">
+                <ion-item-sliding>
+                    <ion-item class="ion-no-padding" lines="none">
+                        <ion-thumbnail style="margin: 10px">
+                            <img [src]="detail?.img" />
+                        </ion-thumbnail>
+                        <ion-label>
+                            <h1 class="ion-text-wrap">{{detail?.name_en}}</h1>
+                            <p class="ion-padding-top">{{detail?.price | currency}}</p>
+                        </ion-label>
+                        <div class="bottom-box">
+                            <Stepper [value]="count" [(ngModel)]="count" [min]="1" [showNumber]="true"
+                                (onChange)="change($event)"></Stepper>
+                        </div>
+                    </ion-item>
+                </ion-item-sliding>
+                <ion-item-sliding>
+                    <ion-item class="ion-no-padding" lines="none" text-wrap>
+                        <ion-label>
+                            <h1 class="ion-text-wrap" style="padding-right: 70px; padding-bottom: 30px">
+                                {{detail?.desc_en}}
+                            </h1>
+                            Allergens:
+                            <span *ngFor="let allergen of detail?.allergens; let i = index;">
+                                {{allergen?.name_en ? allergen.name_en + ',' : ''}}
+                            </span>
+                            <ion-fab *ngIf="isLoggedin" slot="fixed" vertical="top" horizontal="end">
+                                <ion-fab-button color="light">
+                                    <ng-template [ngIf]="detail?.isFavorite" [ngIfElse]="noFov">
+                                        <ion-icon name="heart" color="danger" size="medium"
+                                            (click)="removeFavorite()"></ion-icon>
+                                    </ng-template>
+                                    <ng-template #noFov>
+                                        <ion-icon name="heart-empty" color="danger" size="medium"
+                                            (click)="addFavorite()"></ion-icon>
+                                    </ng-template>
+                                </ion-fab-button>
+                            </ion-fab>
+                        </ion-label>
+                    </ion-item>
+                </ion-item-sliding>
+
+                <button (click)="toggleFunc('ing');" class="accordion">
+                    Ingredients
+                </button>
+                <div style="padding-top: 10px" class="panel" [ngClass]="opened['ing'] ? 'active' : ''">
+                    <div *ngFor="let ingredient of detail?.ingredients">
+                        {{ingredient?.name_en ? ingredient.name_en + '' : ''}}
+                    </div>
+                </div>
+                <button (click)="toggleFunc('nut');" class="accordion">
+                    Nutrition Info
+                </button>
+                <div style="padding-top: 10px" class="panel" [ngClass]="opened['nut'] ? 'active' : ''">
+                    <div *ngFor="let field of detail?.nutritionFields">
+                        {{field.name_en}}: {{detail.nutrition_fields[field.id]}} {{detail.measurement_display}}
+                    </div>
+                </div>
+                <button (click)="toggleFunc('prep');" class="accordion">
+                    Preparation Info
+                </button>
+                <div style="padding-top: 10px" class="panel" [ngClass]="opened['prep'] ? 'active' : ''">
+                    {{detail.procedure_en}}
+                </div>
+                <button (click)="toggleFunc('video');" class="accordion">
+                    Preparation Video
+                </button>
+                <div style="padding-top: 10px" class="panel" [ngClass]="opened['video'] ? 'active' : ''">
+                    <div *ngIf="detail?.video; else noVideoBlock">
+                        <video controls="controls" preload="auto" width="320" height="240">
+                            <source src="{{detail.video}}" type="video/mp4" />
+                        </video>
+                    </div>
+                    <ng-template #noVideoBlock>
+                        <div>No video exists for this meal yet.</div>
+                    </ng-template>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ng-template #content>
+        <custom-ok></custom-ok>
+        <p>Added to cart successfully</p>
+    </ng-template>
+    <ion-row class="ion-text-center">
+        <ion-col size="2" class="ion-no-padding">
+            <ion-icon name="cart" size="large" color="secondary" routerLink="/cart">
+            </ion-icon>
+            <p>cart</p>
+        </ion-col>
+        <ion-col size="2" class="ion-no-padding">
+            <ion-icon name="home" size="large" color="tertiary" routerLink="/tabs/home"></ion-icon>
+            <p>home</p>
+        </ion-col>
+        <ion-col size="4" class="ion-no-padding">
+            <ion-button expand="full" class="btn" color="secondary" (click)="addCart(content)">Add Cart
+            </ion-button>
+        </ion-col>
+        <ion-col size="4" class="ion-no-padding">
+            <ion-button expand="full" class="btn" color="tertiary" (click)="buy()">Buy Now</ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

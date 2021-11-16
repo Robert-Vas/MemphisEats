@@ -1,0 +1,31 @@
+<ion-row>
+    <ion-slides pager="true">
+        <ion-slide *ngFor="let item of photoList">
+            <custom-skeleton-img [src]="item?.img"></custom-skeleton-img>
+        </ion-slide>
+    </ion-slides>
+</ion-row>
+
+<ion-row>
+    <ion-col size="12">
+        <div>
+            <ion-label class="ion-float-left">
+                <h4>{{detail?.name}}</h4>
+            </ion-label>
+            <ion-label class="ion-float-end price">${{detail?.price}}</ion-label>
+        </div>
+    </ion-col>
+</ion-row>
+
+<ion-row class="detail">
+    <div class="line"></div>
+    <span style="display: inline-block;vertical-align:middle;margin-right:3px;">Ready in {{detail?.prep_minutes}} Minutes</span>
+    <div class="line"></div>
+</ion-row>
+
+<div class="desc">
+     {{detail?.desc_en}}
+</div>
+<div *ngFor="let nut of detail.nutritionFields" class="nutririton">
+     {{nut.name_en}}
+</div>

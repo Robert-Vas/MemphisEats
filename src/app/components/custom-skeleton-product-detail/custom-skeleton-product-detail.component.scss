@@ -1,0 +1,22 @@
+:host {
+  custom-skeleton-img {
+    min-height: 390px;
+  }
+
+  .btnSize {
+    width: 60px;
+  }
+
+  .detail {
+    padding: 8px;
+    text-align: center;
+    background: #f4f4f4;
+    color: #b2b2b2;
+    font-size: 1.1rem;
+    display: block;
+  }
+
+  ion-skeleton-text {
+    --background-rgb: 0 ,255 ,0;
+  }
+}

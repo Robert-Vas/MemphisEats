@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-back-button defaultHref="/tabs/my"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Address</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="addAddress()">
+                <ion-icon slot="icon-only" name="add-circle-outline" color="light"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <custom-skeleton-address-list *ngIf="isLoading"></custom-skeleton-address-list>
+    <custom-address-list [list]="list" *ngIf="!isLoading"></custom-address-list>
+</ion-content>

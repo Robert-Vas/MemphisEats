@@ -1,0 +1,54 @@
+:host{
+  ion-slides {
+    height: 100%;
+  }
+
+  .swiper-pagination-bullet {
+    background: var(--ion-color-primary-contrast) !important;
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  .cover-item {
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .cover-content {
+    z-index: 5 !important;
+    position: absolute;
+  }
+
+  .cover-overlay {
+    z-index: 3 !important;
+    position: absolute;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+    background-size: cover;
+    overflow-x: hidden;
+    background-color: var(--ion-color-primary);
+    opacity: 0.5;
+  }
+
+  .cover-content-center {
+    position: absolute;
+    top: 30%;
+    z-index: 10;
+  }
+
+   .cover-content-center.mainbutton {
+      width:100%;
+      position: absolute;
+      bottom: 20%;
+      z-index: 10;
+  }
+}

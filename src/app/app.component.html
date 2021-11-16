@@ -1,0 +1,54 @@
+<ion-app>
+    <ion-split-pane contentId="main-content">
+        <ion-menu side="end" menuId="search" contentId="main-content" disabled="true" type="overlay">
+            <ion-header>
+                <ion-toolbar>
+                    <ion-title>filter</ion-title>
+                </ion-toolbar>
+            </ion-header>
+
+            <ion-content class="ion-padding-start">
+                <h5 class="ion-text-left">Price</h5>
+                <ion-row>
+                    <ion-range min="0" max="30" step="1" dual-knobs pin snaps="true" ticks="true"
+                               [value]="{lower: 1, upper: 20}" color="warning" (ionChange)="ionChange($event)">
+                        <ion-icon slot="start" size="small" name="logo-usd" color="primary"></ion-icon>
+                        <ion-icon slot="end" name="logo-usd" color="primary"></ion-icon>
+                    </ion-range>
+                </ion-row>
+
+                <ion-row>
+                    <h5 class="ion-text-left">Cate</h5>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4" *ngFor="let c of cateList">
+                        <ion-button expand="block" [color]="c.checked? 'warning':'primary'"
+                                    class="ion-text-left ion-text-wrap"
+                                    (click)="onCheckCate(c.id)">
+                            {{c.name}}
+                            <ng-container *ngIf="!c.checked;else mark"></ng-container>
+                            <ng-template #mark>
+                                <ion-icon name="checkmark" color="success"></ion-icon>
+                            </ng-template>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+
+            </ion-content>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-no-margin ion-no-padding" size="6">
+                        <ion-button class="ion-no-padding" expand="full" color="medium" (click)="dismiss()">Cancel
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-no-margin ion-no-padding" size="6">
+                        <ion-button class="ion-no-padding" expand="full" color="danger" (click)="onFilter()">Ok
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+
+        </ion-menu>
+        <ion-router-outlet id="main-content"></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>

@@ -1,0 +1,11 @@
+<ion-row>
+    <ion-col size="12">
+        <ion-slides pager="false" [options]="option">
+            <ion-slide *ngFor="let item of list">
+                <ion-card class="ion-no-margin" [routerLink]="'/pages/goods-detail/'+item?.id">
+                    <custom-skeleton-img [src]="item?.img"></custom-skeleton-img>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </ion-col>
+</ion-row>

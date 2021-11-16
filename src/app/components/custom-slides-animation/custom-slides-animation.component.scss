@@ -1,0 +1,11 @@
+:host {
+  .full {
+    height: 100% !important;
+  }
+
+  ::ng-deep.swiper-pagination-bullet {
+    background: var(--ion-color-primary) !important;
+    width: 12px !important;
+    height: 12px !important;
+  }
+}

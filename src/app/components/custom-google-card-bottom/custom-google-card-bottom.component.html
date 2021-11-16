@@ -1,0 +1,19 @@
+<ion-grid>
+    <ion-row>
+        <ion-col size="12" size-md="6" *ngFor="let item of list">
+            <ion-card class="ion-no-margin ion-no-margin background-size" [class.active]="item.active"
+                      [ngStyle]="{'background-image': 'url('+item.img+')'}"
+                      (click)="item.active=!item.active">
+                <div>
+                    <ion-icon name="ios-arrow-up" size="large" color="light"></ion-icon>
+                </div>
+                <ion-card-content>
+                    <ion-card-subtitle>
+                        <h4>{{item.title}}</h4>
+                        <p class="ion-padding-top">{{item.content}}</p>
+                    </ion-card-subtitle>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-grid>

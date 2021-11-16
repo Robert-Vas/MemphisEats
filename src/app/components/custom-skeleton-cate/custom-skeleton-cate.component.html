@@ -1,0 +1,33 @@
+<div class="container">
+    <!--        left cate-->
+    <div class="cate-left">
+        <div class="cate-left-item" [class.selected]="cate===selectedCate"
+             *ngFor="let cate of cateList">
+            <ng-template [ngIf]="cate===selectedCate" [ngIfElse]="noSelected">
+                <span>  <ion-skeleton-text animated style="width: 98%"></ion-skeleton-text></span>
+                <i class="selected-line"></i>
+            </ng-template>
+            <ng-template #noSelected>
+                <span>  <ion-skeleton-text animated style="width: 98%"></ion-skeleton-text></span>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="cate-right">
+        <div>
+            <ion-row class="ion-margin">
+                <ion-col class="ion-no-padding" size="5.5" *ngFor="let item of cateList">
+                    <ion-thumbnail>
+                        <ion-skeleton-text animated style="width: 98%"></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <p class="ion-text-center">
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+
+        </div>
+    </div>
+</div>

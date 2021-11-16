@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Memphis</ion-title>
+        <ion-buttons slot="end">
+            <ion-button *ngIf="!authService.isAuthenticated" (click)="onLogin()">
+                <ion-icon slot="icon-only" name="log-in"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+                pullingIcon="arrow-dropdown"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="loading...">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <ng-template [ngIf]="isLoading" [ngIfElse]="data">
+        <custom-skeleton-home></custom-skeleton-home>
+    </ng-template>
+    <ng-template #data>
+        <custom-home-layout *ngIf="!isLoading" 
+                            [noticeList]="noticeList"
+                            [bannerList]="bannerList"
+                            [subCateList]="subCateList"
+                            [notice]="notice"
+                            [defaultSubCate]="defaultSubCate"
+                            [goodList]="goodList" 
+                            [hotList]="hotList" 
+                            [newList]="newList"
+                            ></custom-home-layout>
+    </ng-template>
+
+</ion-content>

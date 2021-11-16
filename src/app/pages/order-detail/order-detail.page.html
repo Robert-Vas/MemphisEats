@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/order"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Order Detail</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <custom-slides-my></custom-slides-my>
+    <custom-timeline [list]="list"></custom-timeline>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item lines="none">
+                    <ion-label position="fixed" class="ion-no-margin">Status:</ion-label>
+                    <ion-label class="ion-no-margin">{{order?.status}}</ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-label position="fixed" class="ion-no-margin">OrderNo:</ion-label>
+                    <ion-label class="ion-no-margin">{{order?.id}}</ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-label position="fixed" class="ion-no-margin">Discount:</ion-label>
+                    <ion-label class="ion-no-margin">{{order?.paymentSummary.discount | currency}}</ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-label position="fixed" class="ion-no-margin">Total:</ion-label>
+                    <ion-label class="ion-no-margin">{{orderTotal | currency}}</ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-label position="fixed" class="ion-no-margin">Order Date:</ion-label>
+                    <ion-label class="ion-no-margin ion-text-wrap">{{order?.createdOn | date:'medium'}}</ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6" *ngFor="let g of detailList">
+                <ion-card class="ion-no-margin">
+                    <div style="background: white">
+                        <img [src]="g?.img">
+                        <ion-label>
+                            <h3 class="title">{{g?.name}}</h3>
+                        </ion-label>
+                        <div class="box">
+                            <p class="title ion-text-left">price:{{g?.detailPrice}}$</p>
+                            <p class="title p-right">num:{{g?.num}}</p>
+                        </div>
+                    </div>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>

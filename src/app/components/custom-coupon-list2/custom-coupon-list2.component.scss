@@ -1,0 +1,70 @@
+:host {
+  li {
+    list-style-type: none;
+    margin: 8px 8px 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .box {
+    height: 215px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .btn {
+    margin: 0 auto 16px auto;
+
+    ion-icon {
+      will-change: transform;
+      transition: transform 0.3s ease;
+
+      &.rotate {
+        -webkit-transform: rotate(-180deg);
+        -moz-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+        -o-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  .accordion {
+    background: var(--my-card-background);
+    max-height: 0;
+    display: block !important;
+    transition: ease all 500ms;
+    overflow: hidden;
+  }
+
+  .active {
+    transition: ease all 500ms;
+    overflow: visible;
+    max-height: 999px;
+  }
+
+  ion-item {
+    --background: #dddee2 !important;
+    margin: 0px !important;
+    border-radius: 0px !important;
+  }
+
+  h3 {
+    font-size: 23px !important;
+    line-height: 110%;
+    color: var(--my-custom-font-color2);
+  }
+
+  p {
+    margin: 5px 0 !important;
+    letter-spacing: 1px !important;
+    line-height: 20px !important;
+    font-size: 12px !important;
+    color: var(--my-custom-font-color) !important;
+  }
+}

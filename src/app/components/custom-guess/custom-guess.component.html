@@ -1,0 +1,21 @@
+<ion-row class="hot-title">
+    <img src="assets/img/home/guess.jpg">
+</ion-row>
+
+<ion-segment [(ngModel)]="defaultSubCate" (ionChange)="changed($event)">
+    <ion-segment-button *ngFor="let m of subCateList" [value]="m?.id">
+        <ion-label>{{m?.name}}</ion-label>
+    </ion-segment-button>
+</ion-segment>
+<ion-grid>
+    <ion-row>
+        <ion-col size="6" *ngFor="let g of subGoodList">
+            <ion-card class="ion-no-margin ion-text-center" [routerLink]="'/pages/goods-detail/'+g?.id">
+                <custom-skeleton-img [src]="g?.img"></custom-skeleton-img>
+                <h5 class="ion-text-nowrap">{{g?.name}}</h5>
+                <p class="price">$ {{g?.price}}</p>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+

@@ -1,0 +1,103 @@
+app-goods-detail {
+  .title {
+    text-align: center;
+    color: #222;
+    font-size: 1.1rem;
+  }
+
+  ion-label {
+    color: var(--my-custom-title);
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .line {
+    width: 55px;
+    height: 1px;
+    background: #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+  }
+
+  .price {
+    color: var(--my-custom-label);
+    font-size: 1.1rem;
+  }
+
+  .detail {
+    padding: 8px;
+    text-align: center;
+    background: #f4f4f4;
+    color: #b2b2b2;
+    font-size: 1.1rem;
+    display: block;
+  }
+
+  .btn {
+    margin: 0px;
+    height: 100%;
+  }
+
+  custom-skeleton-img {
+    min-height: 312px;
+    width: 100%;
+  }
+
+  .box {
+    width: 100%;
+    height: auto;
+    padding: 50px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  iframe {
+    min-width: 100%;
+    height: 65vh;
+  }
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #004890;
+  color: #eee;
+  cursor: pointer;
+  padding: 18px;
+  margin:2px;
+  width: 100%;
+  text-align: left;
+  transition: 0.4s;
+  font-size:20px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+.panel.active {
+  padding: 0 18px;
+  background-color: white;
+  display: block;
+  overflow: visible;
+}
+
+ion-modal.cart-modal {
+  background-color: rgba(0, 0, 0, .2) !important;
+  transition: opacity .55s ease-in-out;
+  padding-top: 70vh;
+}
+
+

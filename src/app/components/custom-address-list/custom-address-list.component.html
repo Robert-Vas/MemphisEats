@@ -1,0 +1,15 @@
+<ion-card class="background-size" *ngFor="let item of list" [ngStyle]="{'background-image':'url('+img+')'}">
+  <h3>{{item?.nickName}}</h3>
+  <ion-item lines="none">
+    <ion-icon name="phone-portrait" color="twitter"></ion-icon>
+    <ion-label>{{item?.phone}}</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="map" color="twitter"></ion-icon>
+    <ion-label class="ion-text-wrap">{{item?.address}}</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="pin" color="twitter"></ion-icon>
+    <ion-label class="ion-text-wrap">{{item?.street}}</ion-label>
+  </ion-item>
+</ion-card>

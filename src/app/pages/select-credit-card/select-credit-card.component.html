@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Select Credit Card</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">Close</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid class="ion-no-padding">
+        <!-- todo: add saved payment methods -->
+        <ion-row>
+            <ion-col class="ion-no-padding ion-padding-top">
+                <ion-list>
+                    <ion-list-header>
+                        Credit Card
+                    </ion-list-header>
+
+                    <!-- todo: validate form -->
+                    <form [formGroup]="paymentForm">
+                        <ion-item>
+                            <ion-label>Card Number</ion-label>
+                            <ion-input type="text" placeholder="1111222233334444" formControlName="number"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Expiration Month</ion-label>
+                            <ion-input type="number" placeholder="3" formControlName="expMonth"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Expiration Year</ion-label>
+                            <ion-input type="number" placeholder="2021" formControlName="expYear"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>CVC</ion-label>
+                            <ion-input type="text" placeholder="012" formControlName="cvc"></ion-input>
+                        </ion-item>
+                    </form>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer>
+    <ion-button expand="block" (click)="finishSelection()" [disabled]="!paymentForm.valid">Looks good!</ion-button>
+</ion-footer>

@@ -1,0 +1,63 @@
+app-login {
+  ion-content {
+    overflow: hidden;
+    //--background: #edf8d5 !important;
+    --background: url('../../../assets/img/home/login.jpg') no-repeat fixed !important;
+    //background-size: cover;
+    background-size: 100% 100%;
+  }
+
+  ion-row {
+    background: transparent !important;
+    margin: 8px !important;
+  }
+
+  .logo {
+    width: 200px;
+    margin-top: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  ion-item {
+    border-radius: 10px;
+    padding: 10px;
+    --border-color: white !important;
+  }
+
+  .slide-top {
+    -webkit-animation: slide-in-blurred-top 0.8s cubic-bezier(0.230, 1.000, 0.320, 1.000) 0.2s both;
+    animation: slide-in-blurred-top .08s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+  }
+
+  .slide1 {
+    -webkit-animation: slide-in-bottom 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-bottom 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+  .slide2 {
+    -webkit-animation: slide-in-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s both;
+  }
+
+  .slide3 {
+    -webkit-animation: slide-in-bottom 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-bottom 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s both;
+  }
+
+  .text-danger {
+    color: var(--ion-color-danger);
+  }
+
+  .text-success {
+    color: var(--ion-color-warning);
+  }
+
+  ion-label {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+}

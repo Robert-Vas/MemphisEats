@@ -1,0 +1,76 @@
+:host {
+
+  .menu {
+    img {
+      width: 60px;
+      height: 60px;
+      padding: 5px;
+    }
+  }
+
+  img {
+    filter: blur(3px);
+  }
+
+  .hot-title {
+    height: 45px;
+  }
+
+  ion-item {
+    --inner-padding-end: 0 !important;
+  }
+
+  .top-img-list {
+    width: 100%;
+
+    custom-skeleton-img {
+      min-height: 144px;
+      width: 100%;
+    }
+  }
+
+  ion-card {
+    box-shadow: 0 4px 16px rgba(196, 182, 182, 0.12) !important;
+
+    div {
+      position: absolute;
+      top: 10px;
+      margin-left: 1px;
+      width: 32px;
+      height: 32px;
+      background-position: 50%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: 99;
+    }
+  }
+
+  ion-skeleton-text {
+    margin: auto;
+    --background-rgb: 0, 255, 0;
+  }
+
+  .seg-card {
+    width: 100%;
+
+    custom-skeleton-img {
+      min-height: 210px;
+    }
+  }
+
+  ion-segment {
+    height: 45px;
+  }
+
+  ion-segment-button {
+    font-size: 15px !important;
+  }
+
+  .guess {
+    background: #e3e3e3;
+
+    ion-card {
+      background: white;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<img src="assets/img/home/banner.jpg">
+<ion-item class="ion-no-padding" style="height: 36px;--background: #646262 !important;">
+    <ion-icon src="assets/img/myicon/notice.svg" size="large"></ion-icon>
+    <ion-skeleton-text animated style="width: 89%"></ion-skeleton-text>
+</ion-item>
+<ion-row class="ion-padding">
+    <ion-col size="3" *ngFor="let m of menuList;let i=index"
+             color="primary" class="menu ion-text-center">
+        <img [src]="m.img">
+        <ion-label>
+            <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            </p>
+        </ion-label>
+    </ion-col>
+</ion-row>
+<custom-skeleton-slides-new></custom-skeleton-slides-new>
+<ion-row class="ad-box">
+    <img src="assets/img/home/ad1.jpg"/>
+</ion-row>
+
+<ion-row class="hot-title background-size" [ngStyle]="{'background-image':'url('+img+')'}">
+    <ion-col size="12" class="ion-no-padding">
+        <ion-item lines="none" class="transparent">
+            <ion-icon slot="end" name="arrow-forward" color="medium"></ion-icon>
+        </ion-item>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-slides [options]="option">
+        <ion-slide *ngFor="let item of list">
+            <ion-card class="ion-no-margin top-img-list">
+                <custom-skeleton-img></custom-skeleton-img>
+                <h5 class="ion-text-wrap">
+                    <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+                </h5>
+                <div [ngStyle]="item<3?{'background-image': 'url(assets/img/home/rank1.png)'}:{'background-image': 'url(assets/img/home/rank3.png)'}">
+                    <p>{{item}}</p></div>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</ion-row>
+
+<ion-row class="ad-box">
+    <img src="assets/img/home/ad2.jpg"/>
+</ion-row>
+
+<ion-row class="hot-title">
+    <img src="assets/img/home/guess.jpg">
+</ion-row>
+
+<ion-segment [(ngModel)]="defaultSubCate">
+    <ion-segment-button *ngFor="let m of subCateList" [value]="m?.id">
+        <p style="width: 50px">
+            <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </p>
+    </ion-segment-button>
+</ion-segment>
+<ion-grid class="guess">
+    <ion-row>
+        <ion-col size="6" *ngFor="let g of segList">
+            <ion-card class="ion-no-margin seg-card">
+                <custom-skeleton-img></custom-skeleton-img>
+                <h5 class="ion-text-center">
+                    <ion-skeleton-text animated style="width: 89%"></ion-skeleton-text>
+                </h5>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+

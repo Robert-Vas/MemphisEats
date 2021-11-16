@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            
+        </ion-buttons>
+        <ion-title>Favorite</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ng-container *ngIf="isLoading;else data">
+        <custom-skeleton-img></custom-skeleton-img>
+    </ng-container>
+    <ng-template #data>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6" *ngFor="let item of dishList;let i=index"
+                         [ngStyle]="{'animation':animation(i)}" class="ion-text-center">
+                    <ion-card class="ion-no-margin">
+                        <custom-skeleton-img [src]="item?.img"></custom-skeleton-img>
+                        <h5>{{item?.name_en}}</h5>
+                    </ion-card>
+                    <button (click)="toggleFunc('ing', item.id);" class="accordion">Ingredients</button>
+                    <div style="padding-top:10px;" class="panel" [ngClass]="opened['ing' + item.id] ? 'active' : ''">
+                            <div *ngFor="let ingredient of item.ingredients">{{ingredient?.name_en ? ingredient.name_en + '' : ''}} </div>
+                    </div>
+                    <button (click)="toggleFunc('nut', item.id);" class="accordion">Nutrition Info</button>
+                    <div style="padding-top:10px;" class="panel" [ngClass]="opened['nut' + item.id] ? 'active' : ''">
+                        <div *ngFor="let nut of item.nutInfo"> {{nut}} </div>
+                    </div>
+                    <button (click)="toggleFunc('prep', item.id);" class="accordion">Preparation Info</button>
+                        <div style="padding-top:10px;" class="panel" [ngClass]="opened['prep' + item.id] ? 'active' : ''">
+                            {{item.procedure_en}}
+                        </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-template>
+</ion-content>

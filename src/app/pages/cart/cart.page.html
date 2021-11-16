@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>cart</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="deleteChecked()">
+                <ion-icon slot="icon-only" name="md-trash" color="danger"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" *ngFor="let item of cartList">
+                <ion-item-sliding>
+                    <ion-item class="ion-no-padding" lines="none">
+                        <ion-checkbox color="danger" [(ngModel)]="item.isCheck" (ionChange)="checkSum()"></ion-checkbox>
+                        <ion-thumbnail>
+                            <img [src]="item?.img">
+                        </ion-thumbnail>
+                        <ion-label>
+                            <h2 class="ion-text-wrap">{{item?.name_en}}</h2>
+                            <p class="ion-padding-top">$ {{item?.price}}</p>
+                        </ion-label>
+                        <div class="bottom-box">
+                            <Stepper [value]="item?.num" [(ngModel)]="item.num" [min]="1" [showNumber]="true"
+                                     (onChange)="change($event,item.id)"></Stepper>
+                        </div>
+                        <ion-note color="light" class="ion-float-right">
+                            <ion-icon name="ios-arrow-back" size="large" color="light"></ion-icon>
+                        </ion-note>
+                    </ion-item>
+                    <ion-item-options>
+                        <ion-item-option color="danger" (click)="delete(item.id)" expandable>
+                            <ion-icon name="md-trash" color="light" size="large"></ion-icon>
+                            Delete
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
+<ion-footer *ngIf="cartList?.length>0">
+    <ion-list-header class="ion-no-padding">
+        <ion-checkbox color="danger" [(ngModel)]="allCheck" (ionChange)="checkAll()"></ion-checkbox>
+        <ion-label class="ion-text-left" color="medium">total:${{total}}</ion-label>
+        <ion-button color="danger" expand="block" routerLink="/pages/checkout">Check out</ion-button>
+    </ion-list-header>
+</ion-footer>

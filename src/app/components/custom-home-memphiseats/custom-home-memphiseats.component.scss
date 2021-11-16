@@ -1,0 +1,50 @@
+custom-home-memphiseats {
+  .slide-img {
+    min-height: 210px;
+  }
+
+.mealdate-slides-parent{
+    width:100%;
+  }
+
+  .mealdate-slides{
+    margin: 0 auto;
+  }
+
+  .dateheader {
+    text-align: center;
+    font-size: 25px;
+    display: inline;
+    width: 100%;
+    border-color:black;
+    border-width:1px;
+  }
+  .menu {
+    img {
+      width: 65px;
+      height: 65px;
+      padding: 5px;
+    }
+  }
+
+  .ad-box {
+    height: auto;
+    margin: 3px 1px 3px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // hide scrollbar
+  ion-row::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+ion-modal.notice-modal {
+  background-color: rgba(0, 0, 0, .2) !important;
+  transition: opacity 1s linear;
+  padding: 30vh 3vh;
+}

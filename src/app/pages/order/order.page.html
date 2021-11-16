@@ -1,0 +1,85 @@
+<ion-content class="content" [scrollEvents]="true"
+             (ionScroll)="onScroll($event)">
+    <div class="ion-padding bg background-size">
+        <ion-segment [class.active]="isActive" [(ngModel)]="selectType" color="primary" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="All">
+                <ion-label>All</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="process">
+                <ion-label>Process</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="delivery">
+                <ion-label>Delivery</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="finish">
+                <ion-label>Finish</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="cancel">
+                <ion-label>Cancel</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+
+        <ng-container *ngIf="isLoading;else data">
+            <custom-skeleton-order></custom-skeleton-order>
+        </ng-container>
+        <ng-template #data>
+            <div [ngSwitch]="selectType">
+                <div *ngSwitchCase="'All'">
+                    <ion-card *ngFor="let order of orderList;let i=index"
+                              routerLink="/pages/order-detail/{{order?.id}}">
+                        <ion-card-content class="ion-no-padding">
+                            <ion-item lines="none">
+                                <ion-thumbnail class="ion-no-padding" [ngStyle]="{'animation': animation(i)}">
+                                    <img [src]="getThumbnail(order)">
+                                </ion-thumbnail>
+                                <ion-label class="ion-margin-start">
+                                    <h3 class="title">Order: {{order?.id}}</h3>
+                                    <p class="price">Total: {{getTotal(order.paymentSummary) | currency}}</p>
+                                    <qrcode [qrdata]="order.orderId + '|' + order.paymentId"
+                                            [width]="100"
+                                            [errorCorrectionLevel]="'M'"></qrcode>
+                                </ion-label>
+                            </ion-item>
+                            <ion-item lines="none">
+                                <ion-label class="ion-text-left ion-padding-start"
+                                           [color]="getStatusColor(order?.status)">{{order?.status}}</ion-label>
+                                <ion-label slot="end" class="num ion-text-wrap">{{order?.createdOn | date}}</ion-label>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+                <div *ngSwitchCase="['process','delivery','finish','cancel'].includes(selectType) ? selectType : ''">
+                    <ion-card *ngFor="let order of orderList;let i=index"
+                              routerLink="/pages/order-detail/{{order?.id}}">
+                        <ion-card-content class="ion-no-padding">
+                            <ion-item lines="none">
+                                <ion-thumbnail class="ion-no-padding" [ngStyle]="{'animation': animation(i)}">
+                                    <img [src]="getThumbnail(order)">
+                                </ion-thumbnail>
+                                <ion-label class="ion-margin-start">
+                                    <h3 class="title">Order: {{order?.id}}</h3>
+                                    <p class="price">Total: {{getTotal(order.paymentSummary) | currency}}</p>
+                                    <qrcode [qrdata]="order.orderId + '|' + order.paymentId"
+                                            [width]="100"
+                                            [errorCorrectionLevel]="'M'"></qrcode>
+                                </ion-label>
+                            </ion-item>
+                            <ion-item lines="none">
+                                <ion-label class="ion-text-left ion-padding-start"
+                                           [color]="getStatusColor(order?.status)">{{order?.status}}</ion-label>
+                                <ion-label slot="end" class="ion-text-wrap num">{{order?.createdOn | date}}</ion-label>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button [ngClass]="isEnd?'fade-in-right':'fade-out-right'" (click)="goTop()">
+            <ion-icon name="md-arrow-up"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

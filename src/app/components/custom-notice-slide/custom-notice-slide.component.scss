@@ -1,0 +1,34 @@
+:host {
+  ion-header {
+    padding-top: constant(0px);
+    padding-top: env(0px);
+  }
+
+  ion-card {
+    height: 200px;
+    width: 100%;
+    box-shadow: unset !important;
+    margin: 10px !important;
+  }
+
+  .btn-color {
+    --background: var(--ion-color-primary) !important;
+  }
+
+  ::ng-deep.swiper-pagination-bullet {
+    background: #f3d795 !important;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  ::ng-deep.swiper-pagination-bullet-active {
+    color: #fff;
+    background: var(--ion-color-primary) !important;
+  }
+}

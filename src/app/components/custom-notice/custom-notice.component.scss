@@ -1,0 +1,17 @@
+:host {
+  ::ng-deep.am-notice-bar-icon {
+    margin-left: 0px !important;
+  }
+
+  ::ng-deep.am-notice-bar {
+    background-color: #646262 !important;
+  }
+
+  ::ng-deep.marquee {
+    color: #ffffff !important;
+
+    & span {
+      font-size: 15px !important;
+    }
+  }
+}

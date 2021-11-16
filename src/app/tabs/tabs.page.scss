@@ -1,0 +1,17 @@
+:host {
+  ion-fab-button {
+    margin-bottom: 5px;
+    width: 60px;
+    height: 60px;
+    padding: 0px;
+
+    ion-icon {
+      font-size: 39px !important;
+    }
+  }
+
+  .fab-bottom {
+    margin-bottom: constant(safe-area-inset-bottom);
+    margin-bottom: env(safe-area-inset-bottom);
+  }
+}

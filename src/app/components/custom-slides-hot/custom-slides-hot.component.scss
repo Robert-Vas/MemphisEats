@@ -1,0 +1,35 @@
+:host {
+  .hot-title {
+    height: 45px;
+  }
+
+  ion-item {
+    --inner-padding-end: 0 !important;
+  }
+
+  .col-bg {
+    background: #e3e3e3;
+  }
+
+  ion-card {
+    width: 100%;
+    background: #ffffff;
+
+    div {
+      position: absolute;
+      top: 10px;
+      margin-left: 1px;
+      width: 32px;
+      height: 32px;
+      background-position: 50%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: 99;
+    }
+
+    custom-skeleton-img {
+      min-height: 136px;
+      width: 100%;
+    }
+  }
+}

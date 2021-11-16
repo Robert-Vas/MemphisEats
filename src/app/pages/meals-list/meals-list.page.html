@@ -1,0 +1,118 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="toggle()">
+                <ion-icon slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-row class="search safe" [class.active1]="isActive">
+            <ion-item lines="none" class="ion-no-padding" style="width: 100%">
+                <ion-button fill="clear" class="btn-b" (click)="toggle()">
+                    <ion-icon color="tertiary" name="md-arrow-back" size="large"></ion-icon>
+                </ion-button>
+                <ion-searchbar color="light" class="ion-no-padding ion-no-margin"
+                               (ionInput)="search($event)"></ion-searchbar>
+            </ion-item>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <ion-row>
+        <ion-buttons class="tools">
+            <ion-button color="medium" *ngFor="let btn of btnList;let i=index" class="ion-text-wrap"
+                        [ngStyle]="selectBtnIndex===i?{'border':'2px solid red'}:{'border':'unset'}"
+                        (click)="onFilter(btn.id,i)">{{btn.name}}
+                <ng-container *ngIf="btn.id===1">
+                    <ion-icon name="md-arrow-dropdown" size="small" *ngIf="isHiddenMultiple; else up"></ion-icon>
+                    <ng-template #up>
+                        <ion-icon name="md-arrow-dropup" size="small"></ion-icon>
+                    </ng-template>
+                </ng-container>
+            </ion-button>
+        </ion-buttons>
+    </ion-row>
+    <ion-row class="tools-panel" [class.active]="!isHiddenMultiple">
+        <ion-col size="12">
+            <ion-radio-group [(ngModel)]="filterType">
+                <ion-item *ngFor="let f of multipleList" (click)="selectMultiple(f.name,f.type)">
+                    <ion-label color="medium">{{f.name}}</ion-label>
+                    <ion-radio [value]="f.type" slot="end"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+        </ion-col>
+    </ion-row>
+
+    <ng-container *ngIf="isLoading;else data">
+        <custom-skeleton-list></custom-skeleton-list>
+    </ng-container>
+    <ng-template #data>
+        <ion-grid *ngFor="let meal of mealsList" routerLink="/pages/meals-detail/{{meal?.id}}">
+            <ion-row>
+                <ion-col size="6" *ngFor="let dish of meal.dishes; let i=index;" >
+                    <ion-card class="ion-no-margin">
+                        <custom-skeleton-img [src]="dish?.img"
+                                             [ngStyle]="{'animation':animation(i)}"></custom-skeleton-img>
+                        <h5 class="title ion-text-nowrap">{{dish?.name_en}}</h5>
+                        <ion-item lines="none" class="ion-no-padding ion-no-margin">
+                            <ion-text class="price">$ {{dish?.price}}</ion-text>
+                            <ion-button fill="clear" slot="end" (click)="addCart($event,meal)">
+                                <ion-icon name="cart" class="ion-float-right" size="large" color="success"></ion-icon>
+                            </ion-button>
+                        </ion-item>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-template>
+
+    <div class="screen_cover" *ngIf="isShow"></div>
+    <ion-card class="ion-no-margin no-border-radius cart" [@cartState]="cartState" *ngIf="isShow">
+        <ion-item class="ion-no-margin ion-no-padding no-border-radius" color="primary">
+            <ion-label class="ion-padding-start">
+                <h5>Bags</h5>
+            </ion-label>
+            <ion-button slot="end" color="danger" (click)="onClear()">Clear</ion-button>
+        </ion-item>
+        <ion-item lines="none" class="transparent ion-no-margin" *ngFor="let item of cart$ | async">
+            <ion-thumbnail>
+                <img [src]="item.img">
+            </ion-thumbnail>
+            <ion-label class="ion-padding-start">
+                <ion-text color="dark" class="ion-text-wrap">{{item.name}}</ion-text>
+                <p class="price">${{item.price}}</p>
+            </ion-label>
+            <ion-text color="dark" slot="end">×{{item.num}}</ion-text>
+        </ion-item>
+    </ion-card>
+
+    <ng-container *ngFor="let item of list1; index as index">
+         <span class="move-cart" (@flyInCart.start)="animationStarted($event)"
+               (@flyInCart.done)="animationDone($event)" [@flyInCart]="'in'">
+         <ion-icon name="ios-cart" color="success" size="large" style="z-index: 999"></ion-icon>
+    </span>
+    </ng-container>
+
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button [ngClass]="isEnd?'fade-in-right':'fade-out-right'"
+                        (click)="goTop()">
+            <ion-icon name="md-arrow-up"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ion-footer>
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed" class="fab-bottom">
+        <ion-fab-button color="success" [ngClass]="isAdd?'scale-cart':'no-cart'" (click)="onShow()">
+            <ion-icon name="ios-cart" size="large" color="light"></ion-icon>
+        </ion-fab-button>
+        <ion-badge class="badge" color="danger">{{total | async}}</ion-badge>
+    </ion-fab>
+    <ion-item lines="none" class="transparent">
+        <ion-button slot="end" color="danger" class="btn-default btn-ok" (click)="goCart()">Ok</ion-button>
+    </ion-item>
+</ion-footer>

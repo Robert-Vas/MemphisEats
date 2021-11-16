@@ -1,0 +1,8 @@
+{
+  "name": "app-memphis-eats",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>filter</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-start">
+    <h5 class="ion-text-left">Price</h5>
+    <ion-row>
+        <ion-col size="5">
+            <ion-input placeholder="min price" [(ngModel)]="min"></ion-input>
+        </ion-col>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+            <ion-input placeholder="max price" [(ngModel)]="max"></ion-input>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <h5 class="ion-text-left">Category</h5>
+    </ion-row>
+    <ion-row>
+        <ion-col size="4" *ngFor="let c of cateList">
+            <ion-button expand="block" [color]="c.checked? 'google':'twitter'" class="ion-text-left ion-text-wrap"
+                        (click)="onCheckCate(c.id)">
+                {{c.name_en}}
+                <ng-container *ngIf="!c.checked;else mark"></ng-container>
+                <ng-template #mark>
+                    <ion-icon name="checkmark" color="success"></ion-icon>
+                </ng-template>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+
+</ion-content>
+<ion-footer>
+    <ion-row>
+        <ion-col class="ion-no-margin ion-no-padding" size="6">
+            <ion-button expand="full" color="medium" (click)="dismiss()">Cancel</ion-button>
+        </ion-col>
+        <ion-col class="ion-no-margin ion-no-padding" size="6">
+            <ion-button expand="full" color="danger" (click)="onFilter()">Ok</ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

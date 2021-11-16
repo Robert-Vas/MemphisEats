@@ -1,0 +1,16 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="6" *ngFor="let item of list">
+      <ion-card class="ion-no-margin">
+        <custom-skeleton-img></custom-skeleton-img>
+        <h5><ion-skeleton-text animated style="width: 89%"></ion-skeleton-text></h5>
+        <ion-item lines="none" class="ion-no-padding ion-no-margin">
+          <ion-text class="price"><ion-skeleton-text animated style="width: 20%"></ion-skeleton-text></ion-text>
+          <ion-button fill="clear" slot="end">
+            <ion-icon name="cart" class="ion-float-right" size="large" color="medium"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

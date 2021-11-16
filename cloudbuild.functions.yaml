@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+  dir: 'functions'
+- name: 'okumaonome/firebase-tools'
+  args: ['firebase', 'deploy', '--project', 'memphis-eats', '--only', 'functions', '--token', '$_FIREBASE_TOKEN']
+timeout: "2000s"

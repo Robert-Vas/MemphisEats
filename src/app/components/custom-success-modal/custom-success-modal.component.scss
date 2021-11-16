@@ -1,0 +1,98 @@
+:host {
+  ion-grid {
+    background:  var(--my-custom-color)  !important;
+    width: 100%;
+    height: 100%;
+
+    ion-row {
+      height: 100%;
+    }
+  }
+
+  h2 {
+    color: white;
+  }
+
+  .animated {
+    -webkit-animation: 1s ease-out both scaleAnimation;
+    animation: 1s ease-out both scaleAnimation;
+  }
+
+  .success-animation {
+    -webkit-animation: .7s linear .9s both fadeIn;
+    animation: .7s linear .9s both fadeIn;
+
+  }
+
+  .success-animation {
+    fill: #fff;
+    opacity: 0;
+  }
+
+  .success-check {
+    -webkit-animation: 1s cubic-bezier(.77, 0, .175, 1) both drawCheck, .7s linear .9s both fadeOut;
+    animation: 1s cubic-bezier(.77, 0, .175, 1) both drawCheck, .7s linear .9s both fadeOut;
+  }
+
+  .success-check {
+    stroke-dasharray: 36px, 36px;
+    stroke: #fff;
+  }
+
+  .success-circle {
+    -webkit-animation: 1s cubic-bezier(.77, 0, .175, 1) both drawCircle, .7s linear .9s both fadeOut;
+    animation: 1s cubic-bezier(.77, 0, .175, 1) both drawCircle, .7s linear .9s both fadeOut;
+  }
+
+  .success-circle {
+    stroke-dasharray: 151px, 151px;
+    stroke: #fff;
+  }
+
+  @keyframes scaleAnimation {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes drawCheck {
+    0% {
+      stroke-dashoffset: 36px;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes drawCircle {
+    0% {
+      stroke-dashoffset: 151px;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<custom-slides-animation [list]="bannerList" [animation]="'flip'"></custom-slides-animation>
+<custom-notice [notice]="notice" (click)="onNotice()"></custom-notice>
+<ion-row class="ion-padding">
+    <ion-col size="3" *ngFor="let m of menuList;let i=index"
+             color="primary" class="menu ion-text-center" routerLink="{{m.url}}">
+        <img [src]="m.img" [ngStyle]="{'animation': animation(i)}">
+        <ion-label><p>{{m.name}}</p></ion-label>
+    </ion-col>
+</ion-row>
+<custom-slides-new [list]="newList"></custom-slides-new>
+<ion-row class="ad-box" routerLink="/pages/goods-list/{{defaultSubCate}}">
+    <img src="assets/img/home/ad1.jpg"/>
+</ion-row>
+<custom-slides-hot [list]="hotList"></custom-slides-hot>
+<ion-row class="ad-box" routerLink="/pages/goods-list/all">
+    <img src="assets/img/home/ad2.jpg"/>
+</ion-row>
+<custom-guess [list]="goodList"></custom-guess>

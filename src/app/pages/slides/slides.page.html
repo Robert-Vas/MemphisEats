@@ -1,0 +1,13 @@
+<ion-content fullscreen>
+    <ion-slides pager="true" (ionSlideReachEnd)="onReachEnd()">
+        <ion-slide *ngFor="let item of list">
+            <div class="cover-item" [ngStyle]="{'background-image': 'url('+item.img+')'}">
+                <div class="cover-content cover-content-center mainbutton">
+                    <h1 class="ion-text-uppercase" style="opacity: 0.5">{{item.title}}</h1>
+                    <ion-button color="secondary" routerLink="/tabs/home">Get Started</ion-button>
+                </div>
+                <div class="cover-overlay overlay"></div>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

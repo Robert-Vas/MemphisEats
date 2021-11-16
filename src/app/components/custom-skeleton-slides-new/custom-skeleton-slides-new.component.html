@@ -1,0 +1,9 @@
+<ion-row>
+  <ion-slides [options]="option">
+    <ion-slide *ngFor="let item of list">
+      <ion-card class="ion-no-margin">
+        <custom-skeleton-img></custom-skeleton-img>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-row>

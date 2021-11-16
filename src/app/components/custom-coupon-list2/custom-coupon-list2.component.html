@@ -1,0 +1,28 @@
+<div>
+    <ul class="ion-no-padding ion-no-margin">
+        <li *ngFor="let item of list">
+            <div [ngStyle]="{'background-image': 'url('+item.img+')'}" class="box">
+                <ion-button color="warning" class="btn" (click)="toggle(item)">
+                    <ion-icon name="arrow-down" [class.rotate]="item.active"></ion-icon>
+                    Watch Now
+                </ion-button>
+            </div>
+            <div class="accordion" [class.active]="item.active">
+                <ion-item lines="none">
+                    <ion-label class="ion-text-center">
+                        <h3>{{item.title}}</h3>
+                        <span>
+                             <ion-icon name="star" color="danger"></ion-icon>
+                             <ion-icon name="star" color="danger"></ion-icon>
+                             <ion-icon name="star" color="danger"></ion-icon>
+                             <ion-icon name="star" color="danger"></ion-icon>
+                              <ion-icon name="star-outline" color="danger"></ion-icon>
+                          </span>
+                        <p>{{item.reviews}}</p>
+                        <p class="ion-text-wrap">{{item.content}}</p>
+                    </ion-label>
+                </ion-item>
+            </div>
+        </li>
+    </ul>
+</div>

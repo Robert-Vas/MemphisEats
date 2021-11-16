@@ -1,0 +1,21 @@
+<ion-row class="hot-title background-size" [ngStyle]="{'background-image':'url('+img+')'}">
+    <ion-col size="12" class="ion-no-padding">
+        <ion-item lines="none" class="transparent">
+            <ion-icon slot="end" name="arrow-forward" color="light"></ion-icon>
+        </ion-item>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col size="12" class="col-bg">
+        <ion-slides [options]="option">
+            <ion-slide *ngFor="let item of list">
+                <ion-card class="ion-no-margin" [routerLink]="'/pages/goods-detail/'+item?.id">
+                    <custom-skeleton-img [src]="item?.img" class="ion-margin-top"></custom-skeleton-img>
+                    <h5 class="ion-text-wrap">{{item?.name.length > 20 ? item.name.substring(0, 20) : item.name}}</h5>
+                    <div [ngStyle]="item?.rank<3?{'background-image': 'url(assets/img/home/rank1.png)'}:{'background-image': 'url(assets/img/home/rank3.png)'}">
+                        <p>{{item?.rank}}</p></div>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </ion-col>
+</ion-row>

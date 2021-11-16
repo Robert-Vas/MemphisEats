@@ -1,0 +1,129 @@
+app-my {
+  ion-toolbar {
+    --ion-toolbar-background: transparent !important;
+    --border-width: 0px !important;
+  }
+
+  ion-content {
+    --background: var(--my-custom-background);
+  }
+
+  .row {
+    height: 240px;
+    background-image: url(../../../assets/img/my/head.jpg);
+  }
+
+  .header {
+    text-align: center;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .avatar {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    margin: 0 auto;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+
+  .user-name {
+    font-size: 1.1rem;
+    color: white !important;
+  }
+
+  .balance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h5 {
+      color: white !important;
+      margin: 0px !important;
+    }
+  }
+
+  .menu {
+    background: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+  }
+
+  .line {
+    float: left;
+    width: 1px;
+    height: 42px;
+    margin-top: 2px;
+    background-color: #d5dedd;
+    vertical-align: middle;
+  }
+
+  ion-item {
+    --border-color: var(--my-custom-border);
+  }
+
+  .label, ion-select {
+    color: var(--my-custom-title) !important;
+    font-size: 0.9rem !important;
+  }
+
+  .wave-box {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 240px;
+  }
+
+  .waves {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    min-height: 150px;
+    margin-top: 90px;
+  }
+
+  /* Animation */
+  .parallax > use {
+    animation: move-forever 12s cubic-bezier(.55, .5, .45, .5) infinite;
+  }
+
+  .parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 5s;
+  }
+
+  .parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 9s;
+  }
+
+  .parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 8s;
+  }
+
+  .parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 9s;
+  }
+
+  @keyframes move-forever {
+    0% {
+      transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+      transform: translate3d(85px, 0, 0);
+    }
+  }
+
+
+}

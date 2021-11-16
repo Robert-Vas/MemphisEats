@@ -1,0 +1,27 @@
+:host {
+  .hot-title {
+    height: 45px;
+  }
+
+  ion-segment {
+    height: 45px;
+  }
+
+  ion-segment-button {
+    font-size: 15px !important;
+  }
+
+  ion-card {
+    width: 100%;
+    background: white;
+
+    custom-skeleton-img {
+      width: 100%;
+      min-height: 196px;
+    }
+  }
+
+  ion-grid {
+    background: #e3e3e3;
+  }
+}

@@ -1,0 +1,10 @@
+:host {
+  ion-content {
+    --background: var(--my-custom-background) !important;
+  }
+
+  ::ng-deep ion-card {
+    background: white;
+    margin: 0px;
+  }
+}

@@ -1,0 +1,28 @@
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+            <ion-icon name="Home"></ion-icon>
+            <ion-label>{{'tabs.home' | translate}}</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="cate">
+            <ion-icon name="ribbon"></ion-icon>
+            <ion-label>{{'tabs.cate' | translate}}</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="card">
+        </ion-tab-button>
+        <ion-tab-button tab="order">
+            <ion-icon name="list"></ion-icon>
+            <ion-label>{{'tabs.order' | translate}}</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="my">
+            <ion-icon name="md-person"></ion-icon>
+            <ion-label>{{'tabs.my' | translate}}</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>
+
+<ion-fab vertical="bottom" horizontal="center" slot="fixed" class="fab-bottom">
+    <ion-fab-button color="success" class="fade-in-bottom" routerLink="/cart">
+        <ion-icon name="md-basket" size="large" color="light"></ion-icon>
+    </ion-fab-button>
+</ion-fab>

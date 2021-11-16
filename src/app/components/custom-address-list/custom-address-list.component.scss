@@ -1,0 +1,19 @@
+:host {
+  ion-item {
+    --border-color: var(--my-custom-border);
+    --background: transparent;
+    margin: 0px !important;
+    width: 70%;
+  }
+
+  ion-label {
+    color: var(--my-custom-border) !important;
+  }
+
+  h3 {
+    margin: 30px 0px 10px 50px;
+    color: var(--ion-color-twitter);
+    font-weight: 900;
+    font-size: 2rem;
+  }
+}

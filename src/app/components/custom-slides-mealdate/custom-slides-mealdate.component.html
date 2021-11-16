@@ -1,0 +1,12 @@
+<ion-row>
+    <ion-col size="12" class="col-bg">
+        <ion-slides [options]="option">
+            <ion-slide *ngFor="let item of list">
+                <ion-card class="ion-no-margin" [routerLink]="['/pages/dish-detail/', item.id]" [queryParams]="{date: date}">
+                    <custom-skeleton-img [src]="item?.img" class="ion-margin-top"></custom-skeleton-img>
+                    <h5 class="ion-text-wrap">{{item?.name_en.length > 40 ? item.name_en.substring(0, 40) : item.name_en }}  {{item?.name_en.length < 21 ? '&nbsp;' : '' }}</h5>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </ion-col>
+</ion-row>

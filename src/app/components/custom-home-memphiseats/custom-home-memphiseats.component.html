@@ -1,0 +1,9 @@
+<custom-slides-animation [list]="bannerList" [animation]="'flip'"></custom-slides-animation>
+<custom-notice [notice]="notice" (click)="onNotice()"></custom-notice>
+<ion-row *ngFor="let m of mealList;">
+<h4 class="dateheader">{{m.datetxt}}</h4>
+    <ion-row *ngFor="let d of m.meals;" class="mealdate-slides-parent">
+        <custom-slides-mealdate class="mealdate-slides" [list]="d.dishes" [date]="m.date"></custom-slides-mealdate>
+    </ion-row>
+</ion-row>
+

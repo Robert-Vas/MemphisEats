@@ -1,0 +1,68 @@
+<ion-content fullscreen>
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/tabs/my"></ion-back-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+
+    <div>
+        <div>
+            <ion-row class="ion-margin ion-text-center">
+                <ion-col>
+                    <img class="logo slide-bottom" src="assets/img/home/logo.png"/>
+                </ion-col>
+            </ion-row>
+                <h4 style="text-align:center;">User Info</h4>
+            <form [formGroup]="profileForm">
+                <ion-card>
+                    <ion-item class="slide-bottom1">
+                        <ion-input formControlName="fullName" type="text" placeholder="Full Name"></ion-input>
+                    </ion-item>
+                    <ion-text class="ion-text-center ion-padding-start" color="danger"
+                              *ngIf="!profileForm.controls.fullName.valid  && profileForm.controls.fullName.dirty">
+                        Name must be at least 3 characters
+                    </ion-text>
+                    <ion-item class="slide-bottom2">
+                        <ion-input formControlName="displayName" type="text" placeholder="Display Name"></ion-input>
+                    </ion-item>
+                    <ion-text class="ion-text-center ion-padding-start" color="danger"
+                              *ngIf="!profileForm.controls.displayName.valid  && profileForm.controls.displayName.dirty">
+                        Display Name must be at least 3 characters
+                    </ion-text>
+                    <ion-item class="slide-bottom3">
+                            <ion-input formControlName="zip" type="number" placeholder="Zip Code"></ion-input>
+                    </ion-item>
+                    <ion-text class="ion-text-center ion-padding-start" color="danger"
+                              *ngIf="!profileForm.controls.zip.valid  && profileForm.controls.zip.dirty">
+                        Zip code must be a number with a length of 5
+                    </ion-text>
+                </ion-card>
+                <h4 style="text-align:center;">Allergens</h4>
+                <ion-card>
+                    <ion-item class="slide-bottom1">
+                        <ion-label>Allergens</ion-label>
+                         <ion-select multiple="true" interface="alert" placeholder="Select Allergens" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedAllergens">
+                            <ion-select-option *ngFor="let allergen of allergensList" [value]="allergen.id">{{allergen.name_en}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-card>
+                <h4 style="text-align:center;">Health Profile</h4>
+                   <ion-card *ngFor="let fields of profileFieldsList; let i = index;">
+                    <ion-item class="slide-bottom-1">
+                    <ion-label>{{fields.name_en}}</ion-label>
+                        <ion-input formControlName="{{fields.id}}" clearInput type="number" inputmode="numeric"></ion-input>{{fields.measurement}}
+                    </ion-item>
+                </ion-card>
+            </form>
+            <ion-row class="slide-bottom5">
+                <ion-col class="ion-text-center">
+                    <ion-button type="submit" color="primary" expand="block" [disabled]="!profileForm.valid"
+                                (click)="onOk()">Update Profile
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+</ion-content>

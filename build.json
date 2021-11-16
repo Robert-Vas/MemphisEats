@@ -1,0 +1,24 @@
+{
+    "ios": {
+        "debug": {
+            "codeSignIdentity": "iOS Distribution",
+            "provisioningProfile": "xxxxxxx-xxxxx-xxx-xxxx-xxxxx",
+            "developmentTeam": "xxxxxx",
+            "packageType": "ad-hoc",
+            "iCloudContainerEnvironment": "Development",
+            "buildFlag": [
+                "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+            ]
+        },
+        "release": {
+            "codeSignIdentity": "Apple Distribution",
+            "provisioningProfile": "xxxxx-xx-xxxxx-xxx-xxxx-xxxxx",
+            "developmentTeam": "xxxxxxx",
+            "packageType": "app-store",
+            "iCloudContainerEnvironment": "Production",
+            "buildFlag": [
+                "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+            ]
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Notice</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="onClose()">
+                <ion-icon size="large" name="close" color="danger"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-slides pager="true" [options]="option">
+        <ion-slide *ngFor="let item of noticeList">
+            <ion-card class="ion-no-margin">
+                <h4 class="ion-text-wrap">{{item?.name}}</h4>
+                <p>{{item?.description}}</p>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+<ion-footer>
+    <ion-button expand="full" class="ion-no-margin btn-color" (click)="onClose()">Ok</ion-button>
+</ion-footer>

@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true"
+             (ionScroll)="onScroll($event)">
+
+    <ng-template [ngIf]="list" [ngIfElse]="load">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+                        <ion-item lines="none" color="light" *ngFor="let notice of list" >
+                            <ion-avatar>
+                                <img src="assets/img/home/user.jpg">
+                            </ion-avatar>
+                            <ion-label class="ion-padding-start">
+                                <h5>Isabella</h5>
+                                <ion-text class="ion-margin-start tracking-in-expand ion-text-wrap" color="twitter">
+                                    {{notice?.description}}
+                                </ion-text>
+                                <ion-text color="medium" slot="end" class="ion-text-right">
+                                    <p>19-12-2020</p>
+                                </ion-text>
+                            </ion-label>
+                            <ion-reorder></ion-reorder>
+                        </ion-item>
+                    </ion-reorder-group>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-template>
+    <ng-template #load>
+        <custom-skeleton-img></custom-skeleton-img>
+    </ng-template>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="isEnd">
+        <ion-fab-button [ngClass]="isEnd?'fade-in-right':'fade-out-right'" (click)="goTop()">
+            <ion-icon name="md-arrow-up"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

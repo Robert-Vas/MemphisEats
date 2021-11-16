@@ -1,0 +1,34 @@
+:host {
+  .list-ios {
+    margin-bottom: 0px !important;
+  }
+
+  ion-item {
+    --background: transparent !important;
+    overflow: visible;
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      background: var(--ion-color-warning);
+      top: 50%;
+      left: 52px;
+      height: 100%;
+    }
+
+    &:last-child:before {
+      display: none;
+    }
+  }
+
+  ion-thumbnail {
+    margin-left: 10px;
+  }
+
+  ion-label {
+    background: var(--my-custom-item-background);
+    padding: 8px 16px;
+    border-radius: 8px;
+  }
+}

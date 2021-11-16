@@ -1,0 +1,14 @@
+app-goods-filter {
+  ion-icon {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  ion-input {
+    border: 1px solid var(--ion-color-light-contrast);
+    height: 30px;
+    border-radius: 8px;
+    --padding-start: 15px !important;
+  }
+}

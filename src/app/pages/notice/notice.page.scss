@@ -1,0 +1,19 @@
+app-notice {
+  ion-card-content {
+    background: white !important;
+  }
+
+  ion-item {
+    --inner-padding-end: 0px;
+    margin: 10px 2px 10px 2px;
+    border-radius: 10px;
+  }
+
+  ion-reorder {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+    background: var(--ion-color-primary-tint) !important;
+    color: white;
+  }
+}

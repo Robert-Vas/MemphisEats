@@ -1,0 +1,68 @@
+:host {
+  ::ng-deep.swiper-pagination-bullet {
+    background: var(--ion-color-secondary) !important;
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  custom-skeleton-img {
+    min-height: 390px;
+  }
+
+  .btnSize {
+    width: 60px;
+  }
+
+  .active {
+    background: var(--ion-color-secondary);
+    color: white !important;
+  }
+
+
+  .line {
+    width: 55px;
+    height: 1px;
+    background: #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+  }
+
+  .detail {
+    padding: 8px;
+    text-align: center;
+    background: #f4f4f4;
+    color: #b2b2b2;
+    font-size: 1.1rem;
+    display: block;
+  }
+
+  .desc {
+    padding: 10px;
+
+    ::ng-deep p {
+      font-size: 15px;
+      line-height: 24px;
+      margin: 0 0 10px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    ::ng-deep li {
+      margin-bottom: 8px;
+      line-height: 20px;
+      color: #222;
+      font-weight: 600;
+    }
+  }
+
+  ::ng-deep iframe {
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    left: 0;
+    position: absolute;
+  }
+}
