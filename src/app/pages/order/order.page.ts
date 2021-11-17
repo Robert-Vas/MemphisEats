@@ -27,6 +27,8 @@ export class OrderPage implements OnInit, OnDestroy {
     isLoading = true;
     isActive = false;
     sub: Subscription;
+    segmentOrderList: any[];
+
 
     constructor(
         private alertProvider: AlertProvider,
@@ -62,6 +64,7 @@ export class OrderPage implements OnInit, OnDestroy {
                 this.isLoading = false;
             }, error => this.alertProvider.present(error));
         }
+        
     }
 
     ionViewDidEnter() {
@@ -69,9 +72,9 @@ export class OrderPage implements OnInit, OnDestroy {
     }
 
     segmentChanged(event) {
-        if (this.gList) {
-            this.orderList = this.selectType === 'All' ? this.gList : this.gList.filter(g => g.status === this.selectType);
-        }
+        this.segmentOrderList = []
+        this.selectType = event.detail.value
+        this.filterOrderList()
 
     }
 
@@ -113,5 +116,13 @@ export class OrderPage implements OnInit, OnDestroy {
     getThumbnail(order: Order): string {
         const firstDishId = Object.keys(order.orderedDishes)[0];
         return this.dishImgMap[firstDishId];
+    }
+
+    filterOrderList(){
+
+        this.orderList.forEach(order => {
+            if (order.status == this.selectType) this.segmentOrderList.push(order)     
+        });
+        
     }
 }

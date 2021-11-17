@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Events} from '@ionic/angular';
 import {SessionStorage} from 'ngx-store';
 import {CityService} from '../../shared/api/city.service';
+import {Router} from '@angular/router';
 import {
     AddressService,
     AlertProvider,
@@ -31,6 +32,7 @@ export class MyAddressPage implements OnInit, OnDestroy {
                 private addressService: AddressService,
                 private alertProvider: AlertProvider,
                 private cityService: CityService,
+                private router: Router,
                 private pageService: PageDataService,
                 private event: Events,
                 private toastProvider: Toast1Provider,
@@ -42,7 +44,7 @@ export class MyAddressPage implements OnInit, OnDestroy {
         });
     }
     ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
+        this.sub.unsubscribe();
     }
 
     ngOnInit() {
@@ -72,6 +74,8 @@ export class MyAddressPage implements OnInit, OnDestroy {
             this.aForm.reset();
             this.event.publish('add-address');
             this.toastProvider.showCustomIcon(event);
+        }).then(() => {
+            this.router.navigateByUrl('/pages/address-list');
         });
     }
 
@@ -87,7 +91,6 @@ export class MyAddressPage implements OnInit, OnDestroy {
 
     onOk(result) {
         this.name1 = this.getResult(result);
-
     }
 
     onDismiss() {

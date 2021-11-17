@@ -16,6 +16,7 @@ export class UserModel implements Id {
     public registerDate: string;
     public zip: string;
     public profile: {};
+    public tokens: string[];
 
     constructor(model: any = {}) {
         this.id = model.id;
@@ -33,5 +34,6 @@ export class UserModel implements Id {
         this.registerDate = model.registerDate;
         this.zip = model.zip;
         this.profile = model.profle;
+        this.tokens = model.tokens;
     }
 }

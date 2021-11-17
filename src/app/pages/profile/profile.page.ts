@@ -7,7 +7,7 @@ import {LogModel, UserModel, ProfileFieldsModel, AllergensModel} from '../../sha
 import {Events} from '@ionic/angular';
 import {DatePipe} from '@angular/common';
 import {SessionStorage} from 'ngx-store';
-import { Subscription } from 'rxjs';
+import { Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-profile',
@@ -47,7 +47,6 @@ export class ProfilePage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        //console.log(this.user);
         if (this.user.zip) {
             this.profileForm.get('zip').setValue(this.user.zip);
         }
@@ -61,16 +60,16 @@ export class ProfilePage implements OnInit, OnDestroy {
         }
 
         if (this.user.allergens) {
-        this.selectedAllergens = this.user.allergens;
+            this.selectedAllergens = this.user.allergens;
         }
 
         if (this.user.profile) {
-        this.profileFields = this.user.profile;
+            this.profileFields = this.user.profile;
         }
 
-        this.sub.add(this.allergensService.getList().subscribe(r => {
+        this.sub = this.allergensService.getList().subscribe(r => {
             this.allergensList = r;
-        }));
+        });
 
         this.sub.add(this.profileFieldsService.getList().subscribe(r => {
             this.profileFieldsList = r;
@@ -81,20 +80,16 @@ export class ProfilePage implements OnInit, OnDestroy {
                 }
             }
         }));
-
     }
 
     onOk() {
         this.isLoading = true;
         const model = new UserModel();
 
-        //console.log(this.selectedAllergens);
-
         model.zip = this.profileForm.controls.zip.value;
         model.fullName = this.profileForm.controls.fullName.value;
         model.displayName = this.profileForm.controls.displayName.value;
         model.allergens = this.selectedAllergens;
-
 
         for (const list of this.profileFieldsList) {
             this.profileFields[list.id] = parseFloat(this.profileForm.controls[list.id].value);
@@ -103,9 +98,11 @@ export class ProfilePage implements OnInit, OnDestroy {
         model.profile = this.profileFields;
 
         model.id = this.user.id;
+        model.uid = this.user.uid;
         this.usersService.update(model).then(() => {
-            this.user = model;
+            Object.assign(this.user, model);
             this.alertProvider.present('Profile Updated Successfully!');
+            this.router.navigateByUrl('/tabs/my');
         });
     }
 
@@ -116,5 +113,4 @@ export class ProfilePage implements OnInit, OnDestroy {
     onToggle1() {
         this.isShow1 = !this.isShow1;
     }
-
 }

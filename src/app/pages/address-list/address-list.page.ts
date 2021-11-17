@@ -27,16 +27,15 @@ export class AddressListPage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.addressSub();
         this.getAddress();
+        this.addressSub();
     }
 
     getAddress() {
-        this.sub.add(this.addService.getListByParam('userId', this.authService.user.uid).subscribe(r => {
+        this.sub = this.addService.getListByParam('userId', this.authService.user.uid).subscribe(r => {
             this.list = r;
-            console.log(r);
             this.isLoading = false;
-        }));
+        });
     }
 
     public addressSub() {

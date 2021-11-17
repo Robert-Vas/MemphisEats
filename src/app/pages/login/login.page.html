@@ -23,7 +23,7 @@
                 <ion-card>
                     <ion-item lines="none" class="slide1">
                         <ion-icon name="md-person" color="twitter"></ion-icon>
-                        <ion-input formControlName="email" type="text"></ion-input>
+                        <ion-input formControlName="email" type="text" placeholder="email"></ion-input>
                     </ion-item>
                     <ion-text class="ion-text-center ion-padding-start" color="danger"
                               *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
@@ -36,49 +36,15 @@
                             <ion-icon name="eye-off" color="medium" (click)="onToggle()"></ion-icon>
                         </ng-template>
                         <ng-template #no>
-                            <ion-input formControlName="pwd" type="password"></ion-input>
+                            <ion-input formControlName="pwd" type="password" placeholder="password"></ion-input>
                             <ion-icon name="eye" color="success" (click)="onToggle()"></ion-icon>
                         </ng-template>
                     </ion-item>
-                    <div *ngIf="!loginForm.controls.pwd.valid  && loginForm.controls.pwd.dirty">
-                        <ion-label
-                                [ngClass]="loginForm.controls['pwd'].hasError('required') || loginForm.controls['pwd'].hasError('minlength')  ? 'text-danger' : 'text-success'">
-                            <ion-icon size="large" [name]="loginForm.controls['pwd'].hasError('required') ||loginForm.controls['pwd'].hasError('minlength') ? 'close-circle' :
-                            'checkmark-circle'"></ion-icon>
-                            <p>Must be at least 6 characters!</p>
-                        </ion-label>
-                        <ion-label
-                                [ngClass]="loginForm.controls['pwd'].hasError('required') || loginForm.controls['pwd'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
-                            <ion-icon size="large" [name]="loginForm.controls['pwd'].hasError('required') ||loginForm.controls['pwd'].hasError('hasNumber') ? 'close-circle' :
-                            'checkmark-circle'"></ion-icon>
-                            Must contain at least 1 number!
-                        </ion-label>
-                        <ion-label
-                                [ngClass]="loginForm.controls['pwd'].hasError('required') || loginForm.controls['pwd'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
-                            <ion-icon size="large" [name]="loginForm.controls['pwd'].hasError('required') ||loginForm.controls['pwd'].hasError('hasCapitalCase') ? 'close-circle' :
-                            'checkmark-circle'"></ion-icon>
-                            Must contain at least 1 in Capital Case!
-                        </ion-label>
-                        <ion-label
-                                [ngClass]="loginForm.controls['pwd'].hasError('required') || loginForm.controls['pwd'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
-                            <ion-icon size="large" [name]="loginForm.controls['pwd'].hasError('required') ||loginForm.controls['pwd'].hasError('hasSmallCase') ? 'close-circle' :
-                            'checkmark-circle'"></ion-icon>
-                            Must contain at least 1 Letter in Small Case!
-                        </ion-label>
-                        <ion-label
-                                [ngClass]="loginForm.controls['pwd'].hasError('required') || loginForm.controls['pwd'].hasError('hasSpecialCharacters')  ? 'text-danger' : 'text-success'">
-                            <ion-icon size="large" [name]="loginForm.controls['pwd'].hasError('required') ||loginForm.controls['pwd'].hasError('hasSpecialCharacters') ? 'close-circle' :
-                            'checkmark-circle'"></ion-icon>
-                            Must contain at least 1 Special Character!
-                        </ion-label>
-                    </div>
                 </ion-card>
             </form>
             <ion-row class="slide3">
                 <ion-col class="ion-text-center" size="12">
-                    <ion-button type="submit" color="tertiary" expand="block" [disabled]="!loginForm.valid"
-                                (click)="login()">Login
-                    </ion-button>
+                    <ion-button type="submit" color="tertiary" expand="block" (click)="login()">Login</ion-button>
                 </ion-col>
             </ion-row>
         </div>

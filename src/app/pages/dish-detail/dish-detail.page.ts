@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
+import {SessionStorage} from 'ngx-store';
+import { UserModel } from "../../shared";
+import { AlertController } from "@ionic/angular";
+
+
 
 import {
   CartDataService,
@@ -22,6 +27,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class DishDetailPage implements OnInit, OnDestroy {
+  @SessionStorage() user: UserModel;
   id: string;
   date: string;
   detail: DishesModel;
@@ -31,6 +37,10 @@ export class DishDetailPage implements OnInit, OnDestroy {
   total: string;
   opened = {};
   sub: Subscription;
+  matchedAllergens: string[] = [];
+  
+  
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +51,8 @@ export class DishDetailPage implements OnInit, OnDestroy {
     private authService: AuthService,
     private toast1Provider: Toast1Provider,
     private gProvider: GlobalProvider,
-    private alertProvider: AlertProvider
+    private alertProvider: AlertProvider,
+    private alertCtrl: AlertController
   ) {
     const snapshot = this.route.snapshot;
     this.id = snapshot.paramMap.get("id");
@@ -54,6 +65,26 @@ export class DishDetailPage implements OnInit, OnDestroy {
     this.sub = this.dishesService.getDishesByIds([this.id]).subscribe(dishes => {
       this.detail = dishes[0];
     });
+    if(this.isLoggedin){
+      this.dishesService.getDishesByIds([this.id]).subscribe(dishes => {  
+        dishes[0].allergens.forEach(dishAllergen => {
+          this.user.allergens.forEach(userAllergern => {
+           if(userAllergern == (dishAllergen ? dishAllergen.id : "") ) {   
+              this.matchedAllergens.push((dishAllergen ? dishAllergen.name_en : ""));        
+           }
+          })
+        })
+  
+        if(this.matchedAllergens.length > 0) this.showAlert(this.matchedAllergens);
+        
+      });
+    }
+    
+    
+
+
+    
+    
   }
   
   ngOnDestroy(): void {
@@ -112,4 +143,18 @@ export class DishDetailPage implements OnInit, OnDestroy {
       this.detail.isFavorite = false;
     });
   }
+  async showAlert(allergyList:String[] ) { 
+    
+    const alert = await this.alertCtrl.create({ 
+    header: 'Caution', 
+    subHeader: 'This dish contains these ingredients', 
+    message:  allergyList.join(", "),
+    buttons: ['OK'] 
+    }); 
+    await alert.present(); 
+    const result = await alert.onDidDismiss();  
+    console.log(result); 
+    }
+
+
 }

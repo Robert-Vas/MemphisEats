@@ -65,7 +65,7 @@
                 </button>
                 <div style="padding-top: 10px" class="panel" [ngClass]="opened['nut'] ? 'active' : ''">
                     <div *ngFor="let field of detail?.nutritionFields">
-                        {{field.name_en}}: {{detail.nutrition_fields[field.id]}} {{detail.measurement_display}}
+                        {{field.name_en}}: {{detail.nutrition_fields[field.id]}} {{field.measurement_display}}
                     </div>
                 </div>
                 <button (click)="toggleFunc('prep');" class="accordion">

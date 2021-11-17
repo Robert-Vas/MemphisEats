@@ -1,22 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {BannerModel, DishesModel, CateModel, CategoriesModel, GoodsModel, MealsModel, NoticeModel, SubCateModel} from '../../shared/model';
-import {Events} from '@ionic/angular';
-import {Router} from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BannerModel, DishesModel, CateModel, CategoriesModel, GoodsModel, MealsModel, NoticeModel, SubCateModel } from '../../shared/model';
+import { Events } from '@ionic/angular';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
-
-import {
-    PageDataService,
-    MealsService,
-    BannerService,
-    CategoriesService,
-    CateService,
-    CouponsService,
-    GoodsService,
-    SubCateService,
-    NoticeService,
-    AuthService
-} from '../../shared';
+import { PageDataService, MealsService, BannerService, CategoriesService, CateService, CouponsService, GoodsService, SubCateService, NoticeService, AuthService } from '../../shared';
 import { Subscription } from 'rxjs';
+import { Capacitor } from '@capacitor/core';
+import { FcmService } from '../../shared/api/fcm.service';
+
 
 @Component({
     selector: 'app-home',
@@ -30,7 +21,6 @@ export class HomePage implements OnInit, OnDestroy {
     datetext = [];
     bannerList: Array<BannerModel>;
     sub: Subscription;
-
 
     notice = 'Get $5 off your first weeks purchase;';
     cateList: Array<CateModel>;
@@ -54,19 +44,23 @@ export class HomePage implements OnInit, OnDestroy {
                 private router: Router,
                 private events: Events,
                 public authService: AuthService,
-                private pageService: PageDataService) {
+                private pageService: PageDataService,
+                private fcmService: FcmService) {
 
     }
+
     ngOnDestroy(): void {
         this.sub.unsubscribe();
     }
 
     ngOnInit() {
-         this.getTwoWeeks()
+        if (Capacitor.platform !== 'web') {
+            this.fcmService.initPush();
+        }
+        this.getTwoWeeks();
     }
-
+            
     getTwoWeeks() {
-
         const weekdays = new Array(7);
         weekdays[0] = "Sunday";
         weekdays[1] = "Monday";
@@ -75,7 +69,6 @@ export class HomePage implements OnInit, OnDestroy {
         weekdays[4] = "Thursday";
         weekdays[5] = "Friday";
         weekdays[6] = "Saturday";
-
 
         const today = moment();
         for (let i = 1; i <= 14; i++) {
@@ -147,6 +140,4 @@ export class HomePage implements OnInit, OnDestroy {
             event.target.complete();
         }, 2000);
     }
-
-
 }

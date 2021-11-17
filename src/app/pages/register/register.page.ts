@@ -8,6 +8,8 @@ import {Events} from '@ionic/angular';
 import {DatePipe} from '@angular/common';
 import {forkJoin, Subscription} from 'rxjs';
 import {CustomValidators} from '../../shared/custom-validators';
+import { FcmService } from '../../shared/api/fcm.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
     selector: 'app-register',
@@ -28,7 +30,8 @@ export class RegisterPage implements OnInit, OnDestroy {
                 private events: Events,
                 private datePipe: DatePipe,
                 private userService: UsersService,
-                private logService: LogService) {
+                private logService: LogService,
+                private fcmService: FcmService) {
         this.rForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             name: ['', [Validators.required, Validators.minLength(3)]],
@@ -77,6 +80,11 @@ export class RegisterPage implements OnInit, OnDestroy {
                     .subscribe(results => {
                         const user = new UserModel(r.user);
                         user.displayName = name;
+                        user.id = user.uid;
+                        if (Capacitor.platform !== 'web') {
+                            user.tokens = [this.fcmService.deviceToken];
+                            this.userService.update(user);
+                        }
                         this.authService.user = user;
                         this.authService.isAuthenticated = true;
                         this.events.publish('reg-success');

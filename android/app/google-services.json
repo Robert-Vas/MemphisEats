@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "82138133325",
+    "firebase_url": "https://memphis-eats.firebaseio.com",
+    "project_id": "memphis-eats",
+    "storage_bucket": "memphis-eats.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82138133325:android:67d2edd676ef6a3902bd04",
+        "android_client_info": {
+          "package_name": "com.archiviz.memphiseats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82138133325-2ob5hjfehlsgggenr6nq7itt4rr82qpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF31gB4BrbDyaybc5gMNa8aNOjbK5njY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82138133325-2ob5hjfehlsgggenr6nq7itt4rr82qpr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "82138133325-fu8l1g6kq4if1b8bjc3mar4l3496gvg5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.archiviz.memphiseats"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

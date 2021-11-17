@@ -2,20 +2,29 @@
              (ionScroll)="onScroll($event)">
     <div class="ion-padding bg background-size">
         <ion-segment [class.active]="isActive" [(ngModel)]="selectType" color="primary" (ionChange)="segmentChanged($event)">
+            <!-- the order statuses are not clear. the OrderStatus enum only has "start", "processing","delivering", "done", & "canceled", yet some orders 
+            have a "ready" status. -->
+            
             <ion-segment-button value="All">
                 <ion-label>All</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="process">
-                <ion-label>Process</ion-label>
+            <ion-segment-button value="start">
+                <ion-label>Start</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="delivery">
-                <ion-label>Delivery</ion-label>
+            <ion-segment-button value="processing">  
+                <ion-label>Processing</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="finish">
-                <ion-label>Finish</ion-label>
+            <ion-segment-button value="ready">
+                <ion-label>Ready</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="cancel">
-                <ion-label>Cancel</ion-label>
+            <ion-segment-button value="delivering">
+                <ion-label>Delivering</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="done">
+                <ion-label>Done</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="canceled">
+                <ion-label>Canceled</ion-label>
             </ion-segment-button>
         </ion-segment>
 
@@ -35,7 +44,7 @@
                                 <ion-label class="ion-margin-start">
                                     <h3 class="title">Order: {{order?.id}}</h3>
                                     <p class="price">Total: {{getTotal(order.paymentSummary) | currency}}</p>
-                                    <qrcode [qrdata]="order.orderId + '|' + order.paymentId"
+                                    <qrcode [qrdata]="order.id + '|' + order.paymentId"
                                             [width]="100"
                                             [errorCorrectionLevel]="'M'"></qrcode>
                                 </ion-label>
@@ -48,8 +57,8 @@
                         </ion-card-content>
                     </ion-card>
                 </div>
-                <div *ngSwitchCase="['process','delivery','finish','cancel'].includes(selectType) ? selectType : ''">
-                    <ion-card *ngFor="let order of orderList;let i=index"
+                <div *ngSwitchCase="['All','ready', 'start', 'processing', 'delivering', 'done', 'canceled'].includes(selectType) ? selectType : ''">
+                    <ion-card *ngFor="let order of segmentOrderList;let i=index"
                               routerLink="/pages/order-detail/{{order?.id}}">
                         <ion-card-content class="ion-no-padding">
                             <ion-item lines="none">
@@ -59,7 +68,7 @@
                                 <ion-label class="ion-margin-start">
                                     <h3 class="title">Order: {{order?.id}}</h3>
                                     <p class="price">Total: {{getTotal(order.paymentSummary) | currency}}</p>
-                                    <qrcode [qrdata]="order.orderId + '|' + order.paymentId"
+                                    <qrcode [qrdata]="order.id + '|' + order.paymentId"
                                             [width]="100"
                                             [errorCorrectionLevel]="'M'"></qrcode>
                                 </ion-label>

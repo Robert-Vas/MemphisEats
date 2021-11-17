@@ -3,6 +3,7 @@ import {AuthService, FavoriteService, DishesService} from '../../shared/fapi';
 import {FavoriteModel, DishesModel} from '../../shared/model';
 import {AnimationProvider, PageDataService} from '../../shared';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-favorite-list',
@@ -20,7 +21,8 @@ export class FavoriteListPage implements OnInit {
                 private favoriteService: FavoriteService,
                 private pageService: PageDataService,
                 private animationProvider: AnimationProvider,
-                private authService: AuthService) {
+                private authService: AuthService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -32,7 +34,6 @@ export class FavoriteListPage implements OnInit {
                     this.fList = results[1];
                     this.dishList = this.dList.filter(g => this.fList.find(f => f.dishId === g.id));
                     this.dishList.forEach((dish, i) => {
-                        console.log(dish)
                         let nutinfo = [];
                         dish.nutritionFields.forEach(nut => {
                             nutinfo.push(nut.name_en + ': ' + dish.nutrition_fields[nut.id] + ' ' + nut.measurement_display);
@@ -47,7 +48,7 @@ export class FavoriteListPage implements OnInit {
 
     }
 
-     toggleFunc(nm, id) {
+    toggleFunc(nm, id) {
         const keystring = nm + id;
         if (keystring in this.opened) {
             this.opened[keystring] = !this.opened[keystring];
@@ -58,6 +59,10 @@ export class FavoriteListPage implements OnInit {
 
     animation(i) {
         return this.animationProvider.swingInTopFwd(i);
+    }
+
+    isFavoriteListRoute() {
+        return this.router.url === '/pages/favorite-list';
     }
 
 }

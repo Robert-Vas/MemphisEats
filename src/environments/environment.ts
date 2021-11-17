@@ -16,7 +16,7 @@ export const environment = {
         function: "http://localhost:5001/memphis-eats/us-central1/payWithStripe"
     },
     key: {
-        publishableKey: "pk_test_51ILVa3EwvKye9u9Exh295pfLa89ovknvwL6pCqF8pleKdgk3FuybB3BIcwTkuxKR8Tb061VWKB4lEvisJvlxQozE00oi9Cz2n3"
+        publishableKey: "pk_test_51JjT4EAKmdcCohtqf3ngsAJ9T6Ddat1j2bItxakltyFEsBSfLJF6VXAUOxtAVX0BSQ6PWAgfLoKMt14nlC4862t300ikWyDAUm"
     }
 };
 

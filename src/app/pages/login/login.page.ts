@@ -7,6 +7,8 @@ import {LogModel, UserModel} from '../../shared/model';
 import {DatePipe} from '@angular/common';
 import {CustomValidators} from '../../shared/custom-validators';
 import { Subscription } from 'rxjs';
+import { FcmService } from '../../shared/api/fcm.service';
+import { Capacitor } from '@capacitor/core';
 
 
 @Component({
@@ -28,7 +30,8 @@ export class LoginPage implements OnInit, OnDestroy {
                 private userService: UsersService,
                 private logService: LogService,
                 private formBuilder: FormBuilder,
-                private authService: AuthService) {
+                private authService: AuthService,
+                private fcmService: FcmService) {
         this.loginForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             pwd: ['',
@@ -83,9 +86,19 @@ export class LoginPage implements OnInit, OnDestroy {
                     user.profile = result.profile;
                     user.lastDate = result.lastDate;
                     user.registerDate = result.registerDate;
+                    if (Capacitor.platform !== 'web') {
+                        if (user.tokens == undefined) {
+                            user.tokens = [this.fcmService.deviceToken];
+                            this.userService.update(user);
+                        }
+                        else if (!user.tokens.includes(this.fcmService.deviceToken)) {
+                            user.tokens.push(this.fcmService.deviceToken);
+                            this.userService.update(user);
+                        }
+                    }
                     this.authService.user = user;
                     this.authService.isAuthenticated = true;
-                    this.router.navigateByUrl('/tabs/home').then();
+                    this.router.navigateByUrl('/tabs/home');
                 }));
 
             } else {

@@ -6,6 +6,8 @@ import { combineLatest, Observable, Subscription } from "rxjs";
 import { map, scan, take } from "rxjs/operators";
 import { CustomSuccessModalComponent } from "../../components/custom-success-modal/custom-success-modal.component";
 import { environment } from "../../../environments/environment";
+import { PushNotificationsPickupService } from "../../shared/fapi/push-notifications-pickup.service";
+import { FcmService } from "../../shared/api/fcm.service";
 import {
   CartDataService,
   CartModel,
@@ -27,6 +29,9 @@ import {
 import { Plugins } from "@capacitor/core";
 import "@capacitor-community/stripe";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { PushNotificationsPickup } from "../../shared/model/push-notifications-pickup.model";
+import * as moment from "moment";
+import { Capacitor } from "@capacitor/core";
 
 // get Stripe Capacitor plugin
 const { Stripe } = Plugins;
@@ -54,6 +59,8 @@ export class CheckoutPage implements OnDestroy {
     private modalController: ModalController,
     private orderService: OrderService,
     private locationsService: LocationsService,
+    private pushNotificationsPickupService: PushNotificationsPickupService,
+    private fcmService: FcmService,
     private router: Router,
     private http: HttpClient
   ) {
@@ -150,7 +157,7 @@ export class CheckoutPage implements OnDestroy {
           // and also the function to be published/online
           // view this doc for details on response data: https://stripe.com/docs/api/charges/create
           const res = await this.http.post(environment.firebase.function, {
-            amount: summary.subtotal - summary.discount + summary.tax,
+            amount: Math.ceil((summary.subtotal - summary.discount + summary.tax) * 100),
             currency: "usd",
             token: token.id
           }).toPromise<any>();
@@ -162,7 +169,18 @@ export class CheckoutPage implements OnDestroy {
           component: CustomSuccessModalComponent,
         });
         await modal.present();
-    
+
+        // Tested with simulator before process payment code since stripe did not work on simulator
+        // todo: need to change date to pickup date, right now there's no pickup date in order database 
+        if (Capacitor.platform !== 'web') {
+          const currDate: string = await moment(new Date()).format("YYYY-MM-DD");
+          const pushNotificationsPickup: PushNotificationsPickup = {
+            token: this.fcmService.deviceToken,
+            date: currDate
+          };
+          await this.pushNotificationsPickupService.addModel(pushNotificationsPickup);
+        }
+
         /* uncomment this and fix when discounts are back:
         if (this.discountModel) {
             const myCoupon = new MyCouponModel();
